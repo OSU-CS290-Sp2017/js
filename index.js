@@ -114,3 +114,74 @@ var helloWorldFn = function () {
 
 helloWorldFn();
 helloWorldFn();
+
+/********************* Objects **************************/
+
+console.log("======================== Objects");
+
+var myObj = {
+  luke: {
+    name: "Luke Skywalker",
+    age: 22
+  },
+  "yoda": {
+    "name": "Yoda",
+    "age": 800
+  }
+};
+
+console.log("yoda:", myObj.yoda);
+console.log("yoda.age:", myObj.yoda.age);
+
+var fieldToAccess = "luke";
+console.log("myObj.fieldToAccess:", myObj.fieldToAccess);
+console.log("luke:", myObj[fieldToAccess]);
+
+console.log("keys:", Object.keys(myObj));
+Object.keys(myObj).forEach(function (key) {
+  console.log("myObj[" + key + "]:", myObj[key]);
+});
+
+function getFullName(person) {
+  return person.firstName + " " + person.lastName;
+}
+
+var personObj = {
+  firstName: "Princess",
+  lastName: "Leia",
+  getFullName: function () {
+    return this.firstName + " " + this.lastName
+  }
+};
+personObj.isJedi = true;
+delete personObj.isJedi;
+
+console.log("full name:", personObj.getFullName());
+
+var personObj2 = {
+  firstName: "Darth",
+  lastName: "Vader",
+  getFullName: function () {
+    return this.firstName + " " + this.lastName
+  }
+};
+
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+
+Person.staticFunction = function() {
+  console.log("This is a static function");
+}
+
+Person.prototype.getFullName = function() {
+  return this.firstName + " " + this.lastName;
+}
+
+var betterPersonObj = new Person("ObiWan", "Kenobi");
+betterPersonObj.isJedi = true;
+console.log(betterPersonObj.firstName + " " + betterPersonObj.lastName);
+console.log(betterPersonObj.getFullName());
+
+Person.staticFunction();
